@@ -4,12 +4,13 @@ phases:
   install:
     commands:
       # Install Docker
-      - echo Installing Docker...
-      - sudo yum update -y
-      - sudo yum install -y docker
+      #- echo Installing Docker...
+      #- sudo yum update -y
+      #- sudo yum install -y docker
       - sudo docker --version
-      - sudo sudo systemctl start docker
-      - sudo usermod -a -G docker $USER
+      - sudo docker info
+      #- sudo sudo systemctl start docker
+      #- sudo usermod -a -G docker $USER
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
