@@ -8,7 +8,7 @@ phases:
       - sudo yum update -y
       - sudo yum install -y docker
       - sudo docker --version
-      - sudo service docker start
+      - sudo sudo systemctl start docker
       - sudo usermod -a -G docker $USER
   pre_build:
     commands:
