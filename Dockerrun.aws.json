@@ -3,9 +3,9 @@
     "containerDefinitions": [
       {
         "name": "service-a",
-        "image": "aws-container-demo/service-a:latest",
+        "image": "471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-a:latest",
         "essential": true,
-        "memory": 512,
+        "memory": 128,
         "portMappings": [
           {
             "containerPort": 3001
@@ -14,9 +14,9 @@
       },
       {
         "name": "service-b",
-        "image": "aws-container-demo/service-b:latest",
+        "image": "471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-b:latest",
         "essential": true,
-        "memory": 512,
+        "memory": 128,
         "portMappings": [
           {
             "containerPort": 3002
