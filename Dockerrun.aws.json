@@ -1,0 +1,28 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+      {
+        "name": "service-a",
+        "image": "aws-container-demo/service-a:latest",
+        "essential": true,
+        "memory": 512,
+        "portMappings": [
+          {
+            "containerPort": 3001
+          }
+        ]
+      },
+      {
+        "name": "service-b",
+        "image": "aws-container-demo/service-b:latest",
+        "essential": true,
+        "memory": 512,
+        "portMappings": [
+          {
+            "containerPort": 3002
+          }
+        ]
+      }
+    ]
+  }
+  
