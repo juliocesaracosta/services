@@ -8,13 +8,14 @@ phases:
       #- sudo yum update -y
       #- sudo yum install -y docker
       - sudo docker --version
-      - sudo docker info
+      #- sudo docker info
       #- sudo sudo systemctl start docker
       #- sudo usermod -a -G docker $USER
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - $(aws get-login-password --region $AWS_DEFAULT_REGION)
+      #- echo Logging in to Amazon ECR...
+      #- $(aws ecr get-login --no-include-email)
+      #- $(aws ecr get-login-password --region $AWS_DEFAULT_REGION)
   build:
     commands:
       - echo Building Docker images...
