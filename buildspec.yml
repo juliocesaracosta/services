@@ -1,27 +1,29 @@
 version: 0.2
 
 phases:
-  install:
-    commands:
-      - echo Obteniendo Credenciales
-      - aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 471112942110.dkr.ecr.us-west-1.amazonaws.com
   pre_build:
     commands:
-      #- echo Logging in to Amazon ECR...
-      #- $(aws ecr get-login --no-include-email)
-      #- $(aws ecr get-login-password --region $AWS_DEFAULT_REGION)
+      # Authenticate Docker to ECR
+      - echo Obteniendo Credenciales
+      - aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 471112942110.dkr.ecr.us-west-1.amazonaws.com
+      
+      # Set image tag variables for both images
+      - IMAGE1_REPOSITORY_URI = 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a
+      - IMAGE1_TAG=latest
+      - IMAGE2_REPOSITORY_URI = 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b
+      - IMAGE2_TAG=latest
   build:
     commands:
-      - echo Building Docker images...
-      - docker build -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-a:latest -f service-a/Dockerfile .
-      - docker build -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-b:latest -f service-b/Dockerfile .
-      - docker tag 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-a:latest 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-a:latest
-      - docker tag 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-b:latest 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-b:latest
+      - echo Building the first Docker image...
+      - docker build -t $IMAGE1_REPOSITORY_URI:$IMAGE1_TAG -f service-a/Dockerfile --no-cache .
+      - echo Building the second Docker image...
+      - docker build -t $IMAGE2_REPOSITORY_URI:$IMAGE2_TAG -f service-b/Dockerfile --no-cache .
   post_build:
     commands:
-      - echo Pushing Docker images...
-      - docker push 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-a:latest
-      - docker push 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-b:latest
+      - echo Pushing the first Docker image to Amazon ECR...
+      - docker push $IMAGE1_REPOSITORY_URI:$IMAGE1_TAG
+      - echo Pushing the second Docker image to Amazon ECR...
+      - docker push $IMAGE2_REPOSITORY_URI:$IMAGE2_TAG
 artifacts:
   files:
     - Dockerrun.aws.json
