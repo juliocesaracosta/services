@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 18
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email)
+  build:
+    commands:
+      - echo Building Docker images...
+      - docker build -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-a:latest -f /service-a/Dockerfile .
+      - docker build -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-b:latest -f /service-b/Dockerfile .
+      - docker tag 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-a:latest 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-a:latest
+      - docker tag 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-b:latest 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-b:latest
+  post_build:
+    commands:
+      - echo Pushing Docker images...
+      - docker push 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-a:latest
+      - docker push 471112942110.dkr.ecr.us-west-1.amazonaws.com/images-demo-microservices/service-b:latest
+artifacts:
+  files:
+    - Dockerrun.aws.json
