@@ -1,5 +1,5 @@
 {
-    "AWSEBDockerrunVersion": "1",
+    "AWSEBDockerrunVersion": "2",
     "containerDefinitions": [
       {
         "name": "service-a",
@@ -7,8 +7,8 @@
         "essential": true,
         "portMappings": [
           {
-            "containerPort": 3001,
-            "hostPort": 3001
+            "containerPort": "3001",
+            "hostPort": "3001"
           }
         ]
       },
@@ -18,8 +18,8 @@
         "essential": true,
         "portMappings": [
           {
-            "containerPort": 3002,
-            "hostPort": 3002
+            "containerPort": "3002",
+            "hostPort": "3002"
           }
         ]
       }
