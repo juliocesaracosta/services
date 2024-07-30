@@ -4,20 +4,20 @@ phases:
   pre_build:
     commands:
       # Authenticate Docker to ECR
-      - echo Obteniendo Credenciales
-      - aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 471112942110.dkr.ecr.us-west-1.amazonaws.com
+      #- echo Obteniendo Credenciales
+      #- aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 471112942110.dkr.ecr.us-west-1.amazonaws.com
   build:
     commands:
-      - echo Building the first Docker image...
-      - docker build -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest -f service-a/Dockerfile --no-cache .
-      - echo Building the second Docker image...
-      - docker build -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest -f service-b/Dockerfile --no-cache .
+      #- echo Building the first Docker image...
+      #- docker build -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest -f service-a/Dockerfile --no-cache .
+      #- echo Building the second Docker image...
+      #- docker build -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest -f service-b/Dockerfile --no-cache .
   post_build:
     commands:
-      - echo Pushing the first Docker image to Amazon ECR...
-      - docker push 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest
-      - echo Pushing the second Docker image to Amazon ECR...
-      - docker push 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest
+      #- echo Pushing the first Docker image to Amazon ECR...
+      #- docker push 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest
+      #- echo Pushing the second Docker image to Amazon ECR...
+      #- docker push 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest
 artifacts:
   files:
-    - Dockerrun.aws.json
+    #- Dockerrun.aws.json

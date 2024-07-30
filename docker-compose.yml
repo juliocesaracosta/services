@@ -1,0 +1,12 @@
+version: '3'
+services:
+  service-a:
+    build:
+      context: ./service-a
+    ports:
+      - "3001:3001"
+  service-b:
+    build:
+      context: ./service-b
+    ports:
+      - "3002:3002"
