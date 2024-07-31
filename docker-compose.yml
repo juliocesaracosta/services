@@ -1,8 +1,14 @@
 version: '3'
 services:
+  service-a:
+    image: 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest
+    ports:
+      - "5000:5000"
+    environment:
+      - API_KEY=value
   service-b:
     image: 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest
     ports:
-      - "3000:3000"
+      - "5001:5000"
     environment:
       - API_KEY=value
