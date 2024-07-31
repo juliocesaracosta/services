@@ -1,12 +1,14 @@
 version: '3'
 services:
-  service-a:
-    build:
-      context: ./service-a
+  web:
+    image: 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest
     ports:
       - "3001:3001"
-  service-b:
-    build:
-      context: ./service-b
+    environment:
+      - ENV_VAR=value
+  api:
+    image: 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest
     ports:
-      - "3002:3002"
+      - "3001:3001"
+    environment:
+      - API_KEY=value

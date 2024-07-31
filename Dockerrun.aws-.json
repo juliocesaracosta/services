@@ -1,0 +1,41 @@
+{
+    "AWSEBDockerrunVersion": 3,
+    "services": {
+      "service-a": {
+        "image": {
+          "name": "471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest",
+          "update": "true"
+        },
+        "ports": [
+          {
+            "containerPort": 3001,
+            "hostPort": 3001
+          }
+        ],
+        "environment": [
+          {
+            "name": "ENV_VAR",
+            "value": "value"
+          }
+        ]
+      },
+      "service-b": {
+        "image": {
+          "name": "471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest",
+          "update": "true"
+        },
+        "ports": [
+          {
+            "containerPort": 3002,
+            "hostPort": 3002
+          }
+        ],
+        "environment": [
+          {
+            "name": "API_KEY",
+            "value": "value"
+          }
+        ]
+      }
+    }
+  }
