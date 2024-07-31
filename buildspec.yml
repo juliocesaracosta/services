@@ -9,9 +9,9 @@ phases:
   build:
     commands:
       - echo Building the first Docker image...
-      - docker build -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest -f service-a/Dockerfile --no-cache .
+      - docker build --no-cache -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest -f service-a/Dockerfile .
       - echo Building the second Docker image...
-      - docker build -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest -f service-b/Dockerfile --no-cache .
+      - docker build --no-cache -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest -f service-b/Dockerfile .
   post_build:
     commands:
       - echo Pushing the first Docker image to Amazon ECR...
