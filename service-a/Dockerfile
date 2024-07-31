@@ -1,6 +1,6 @@
 FROM python:3.12
-COPY . /app
-WORKDIR /app
+COPY . /service-a
+WORKDIR /service-a
 RUN pip install Flask==3.0.2
 EXPOSE 5001
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0:5001"]
