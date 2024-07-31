@@ -2,7 +2,7 @@
 FROM node:18
 
 # Create and set the working directory
-WORKDIR /usr/src/app
+WORKDIR /usr/src/service-b
 
 # Copy package.json and install dependencies
 COPY service-b/package*.json ./

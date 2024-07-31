@@ -1,19 +1,25 @@
 version: 0.2
 
 phases:
-  pre_build:
+  install:
     commands:
       # Authenticate Docker to ECR
       - echo Obteniendo Credenciales
       - aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 471112942110.dkr.ecr.us-west-1.amazonaws.com
+  pre_build:
+    commands:
+      - echo Building Docker images
+      - docker --no-cache build -t service-a-image ./service-a
+      - docker --no-cache build -t service-b.image ./service-b
   build:
     commands:
-      - echo Building the first Docker image...
-      - docker build -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest -f service-a/Dockerfile .
-      - echo Borrando cache del build...
-      - docker builder prune -f
-      - echo Building the second Docker image...
-      - docker build -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest -f service-b/Dockerfile .
+      #- echo Building the first Docker image...
+      #- docker build --no-cache -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest -f service-a/Dockerfile .
+      #- echo Building the second Docker image...
+      #- docker build --no-cache -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest -f service-b/Dockerfile .
+      - echo Tagging Docker images
+      - docker tag service-a-image:latest 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest
+      - docker tag service-b.image:latest 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest
   post_build:
     commands:
       - echo Pushing the first Docker image to Amazon ECR...
