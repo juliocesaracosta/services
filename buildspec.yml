@@ -9,8 +9,8 @@ phases:
   pre_build:
     commands:
       - echo Building Docker images
-      - docker --no-cache build -t service-a-image ./service-a
-      - docker --no-cache build -t service-b.image ./service-b
+      - docker build --no-cache -t service-a-image ./service-a
+      - docker build --no-cache -t service-b.image ./service-b
   build:
     commands:
       #- echo Building the first Docker image...
