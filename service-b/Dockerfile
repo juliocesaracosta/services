@@ -1,18 +1,6 @@
-# Use the official Node.js image
-FROM node:18
-
-# Create and set the working directory
-WORKDIR /service-b
-
-# Copy package.json and install dependencies
-COPY package*.json ./
-RUN npm install
-
-# Copy the rest of the application code
-COPY . .
-
-# Expose the port the app runs on
-EXPOSE 3002
-
-# Define the command to run the app
-CMD [ "npm", "start" ]
+FROM python:3.12
+COPY . /app
+WORKDIR /app
+RUN pip install Flask==3.0.2
+EXPOSE 5000
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]

@@ -9,7 +9,7 @@ phases:
   pre_build:
     commands:
       - echo Building Docker images
-      - docker build --no-cache -t service-a-image ./service-a
+      #- docker build --no-cache -t service-a-image ./service-a
       - docker build --no-cache -t service-b.image ./service-b
   build:
     commands:
@@ -18,12 +18,12 @@ phases:
       #- echo Building the second Docker image...
       #- docker build --no-cache -t 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest -f service-b/Dockerfile .
       - echo Tagging Docker images
-      - docker tag service-a-image:latest 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest
+      #- docker tag service-a-image:latest 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest
       - docker tag service-b.image:latest 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest
   post_build:
     commands:
-      - echo Pushing the first Docker image to Amazon ECR...
-      - docker push 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest
+      #- echo Pushing the first Docker image to Amazon ECR...
+      #- docker push 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-a:latest
       - echo Pushing the second Docker image to Amazon ECR...
       - docker push 471112942110.dkr.ecr.us-west-1.amazonaws.com/service-b:latest
 artifacts:
